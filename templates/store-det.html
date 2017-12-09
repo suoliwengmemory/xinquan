@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>心全健康-门店展示</title>
+{% endblock head %}
+
+{% block menu %}
+    <div class="topBox">
+        <div class="top box">
+            <a href="index.html">
+                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            </a>
+            <div class="top-tel">
+                <span>招商热线</span>
+                <i>400-8866-170</i>
+            </div>
+            <ul class="nav">
+                <li class="yiji">
+                    <a class="text" href="/show/">企业介绍</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/xq/">心全 Health Box</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/goods/">药柜产品</a>
+                    <ul class="erjibox">
+                        {% for all_Kind in all_Kinds %}
+                            <li class="erji">
+                                <a href="/goods/">{{ all_Kind.kind}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="yiji active">
+                    <a class="text" href="/store/">门店展示</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/lesson/">心全课堂</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/news/">新闻动态</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/contact/">联系我们</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock menu %}
+
+{% block image %}
+    {% for all_Theme in all_Themes %}
+    <div class="banner produc-banner" style="background-image: url({{ MEDIA_URL }}{{ all_Theme.image }})"></div>
+    {% endfor %}
+{% endblock image %}
+
+
+{% block menu1 %}
+    <ul class="m-nav">
+        <li class="yiji">
+            <a class="text" href="/index/">返回首页</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/show/">企业介绍</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/xq/">心全 Health Box</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/goods/">药柜产品</a>
+            <ul class="erjibox">
+                {% for all_Kind in all_Kinds %}
+                    <li class="erji">
+                        <a href="javascript:void(0)">{{ all_Kind.kind }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="yiji active">
+            <a class="text" href="/store/">门店展示</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/lesson/">心全课堂</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/news/">新闻动态</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/contact/">联系我们</a>
+        </li>
+    </ul>
+{% endblock menu1 %}
+
+{% block main %}
+<div class="you">
+    <div class="dh">
+        <a href="index.html">首页</a> >
+        <a href="store.html">门店展示</a>
+    </div>
+    <div class="cont probox" style="padding: 20px;">
+        <div class="swiper-container store-banner">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src={{ MEDIA_URL }}{{ store.image1 }} alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src={{ MEDIA_URL }}{{ store.image2 }} alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src={{ MEDIA_URL }}{{ store.image3 }} alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src={{ MEDIA_URL }}{{ store.image4 }} alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src={{ MEDIA_URL }}{{ store.image5 }} alt="">
+                </div>
+            </div>
+
+            <div class="col-banner">
+                <div class="img-box active">
+                    <img src={{ MEDIA_URL }}{{ store.image1 }} alt="">
+                </div>
+                <div class="img-box">
+                    <img src={{ MEDIA_URL }}{{ store.image2 }} alt="">
+                </div>
+                <div class="img-box">
+                    <img src={{ MEDIA_URL }}{{ store.image3 }} alt="">
+                </div>
+                <div class="img-box">
+                    <img src={{ MEDIA_URL }}{{ store.image4 }} alt="">
+                </div>
+                <div class="img-box">
+                    <img src={{ MEDIA_URL }}{{ store.image5 }} alt="">
+                </div>
+                <!-- l&r -->
+                <div class="s-left"></div>
+                <div class="s-right"></div>
+            </div>
+        </div>
+        <p class="sd-k-info">
+            {% autoescape off %}{{ store.detail }}{% endautoescape %}
+        </p>
+    </div>
+</div>
+{% endblock main %}

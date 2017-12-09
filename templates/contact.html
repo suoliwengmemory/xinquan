@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>心全健康-联系我们</title>
+{% endblock head %}
+
+{% block menu %}
+    <div class="topBox">
+        <div class="top box">
+            <a href="index.html">
+                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            </a>
+            <div class="top-tel">
+                <span>招商热线</span>
+                <i>400-8866-170</i>
+            </div>
+            <ul class="nav">
+                <li class="yiji">
+                    <a class="text" href="/show/">企业介绍</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/xq/">心全 Health Box</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/goods/">药柜产品</a>
+                    <ul class="erjibox">
+                        {% for all_Kind in all_Kinds %}
+                            <li class="erji">
+                                <a href="/goods/">{{ all_Kind.kind}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/store/">门店展示</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/lesson/">心全课堂</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/news/">新闻动态</a>
+                </li>
+                <li class="yiji active">
+                    <a class="text" href="/contact/">联系我们</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock menu %}
+
+{% block image %}
+    {% for all_Theme in all_Themes %}
+    <div class="banner produc-banner" style="background-image: url({{ MEDIA_URL }}{{ all_Theme.image }})"></div>
+    {% endfor %}
+{% endblock image %}
+
+{% block menu1 %}
+    <ul class="m-nav">
+        <li class="yiji">
+            <a class="text" href="/index/">返回首页</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/show/">企业介绍</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/xq/">心全 Health Box</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/goods/">药柜产品</a>
+            <ul class="erjibox">
+                {% for all_Kind in all_Kinds %}
+                    <li class="erji">
+                        <a href="javascript:void(0)">{{ all_Kind.kind }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/store/">门店展示</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/lesson/">心全课堂</a>
+        </li>
+        <li class="yiji">
+            <a class="text" href="/news/">新闻动态</a>
+        </li>
+        <li class="yiji active">
+            <a class="text" href="/contact/">联系我们</a>
+        </li>
+    </ul>
+{% endblock menu1 %}
+
+{% block main %}
+<div class="you">
+    <div class="dh">
+        <a href="index.html">首页</a> >
+        <a href="contact.html">联系我们</a>
+    </div>
+    {% for all_Contact in all_Contacts %}
+        <div class="cont classcont contactb" style="padding-bottom: 350px;">
+            <img src={{ MEDIA_URL }}{{ all_Contact.image }} class="cdding" alt="">
+            <div class="zs">
+                <img src={% static "./images/cona_03.png" %} alt="">
+                <p><span class="red f16">心全Health Box招商热线</span><i>{{ all_Contact.content1 }}</i></p>
+            </div>
+            <div class="zs">
+                <img src={% static "./images/cona_03.png" %} alt="">
+                <p><span class="red f16">产品服务热线</span><i>{{ all_Contact.content2 }}</i></p>
+            </div>
+            <div class="zs">
+                <img src={% static "./images/cona_06.png" %} alt="">
+                <p><span class="red f16">企业地址</span><i style="font-size: 19px;">{{ all_Contact.content3 }}</i></p>
+            </div>
+            <br><br><br>
+        </div>
+    {% endfor %}
+</div>
+{% endblock main %}

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}
+    {% endblock head %}
+    <link rel="shortcut icon" href={% static "./images/favicon.ico" %} />
+    <link rel="stylesheet" href={% static "css/swiper.css" %}>
+    <link href={% static "css/style.css" %} rel="stylesheet">
+</head>
+
+<body class="f8back">
+    <!-- nav -->
+    {% block menu %}
+    {% endblock menu %}
+    <!-- banner -->
+    {% block image %}
+    {% endblock image %}
+    <!-- content -->
+    <div class="box page clear">
+        <div class="zuo">
+            <div class="tou">
+                门店展示 <br>STORE DISPLAY
+            </div>
+            {% block menu1 %}
+            {% endblock menu1 %}
+            <div class="m-tel">
+                <small>全国统一免费服务热线</small> 400-8866-170
+            </div>
+        </div>
+        {% block main %}
+        {% endblock main %}
+    </div>
+    <!-- foot -->
+    <div class="foot">
+        <div class="box clear">
+            <img src={% static "./images/pic1_40.png" %} class="left" alt="">
+            <div class="fnav left">
+                <a href="show.html">企业介绍</a>
+                <a href="xq.html">心全 Health Box</a>
+                <a href="brand.html">品牌天地</a>
+                <a href="lesson.html">心全课堂</a>
+                <a href="honor.html">企业资讯</a>
+                <a href="contact.html">联系我们</a>
+                <p class="copy">
+                    © Copyright 2012/2016 All Right reserved by FrieslandCampina Trading 沪ICP备16047606号
+                </p>
+            </div>
+            <div class="ftel right">
+                <small>Telephone</small> 400-8866-170
+            </div>
+        </div>
+    </div>
+    <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
+
+    <script src={% static "js/jauery.js" %}></script>
+    <script src={% static "js/swiper.js" %}></script>
+    <script src={% static "js/main.js" %}></script>
+</body>
+
+</html>

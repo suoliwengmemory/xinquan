@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>心全健康-首页</title>
+    <link rel="shortcut icon" href={% static "./images/favicon.ico" %}/>
+    <link rel="stylesheet" href={% static "css/swiper.css" %}>
+    <link href={% static "css/style.css" %} rel="stylesheet">
+</head>
+
+<body>
+    <!-- nav -->
+    <div class="topBox">
+        <div class="top box">
+            <a href="index.html">
+                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            </a>
+            <div class="top-tel">
+                <span>招商热线</span>
+                <i>400-8866-170</i>
+            </div>
+            <ul class="nav">
+                <li class="yiji">
+                    <a class="text" href="/show/">企业介绍</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/xq/">心全 Health Box</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="javascript:void(0);">药柜产品</a>
+                    <ul class="erjibox">
+                        {% for all_Kind in all_Kinds%}
+                            <li class="erji">
+                                <a href="/goods/">{{ all_Kind.kind }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/store/">门店展示</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/lesson/">心全课堂</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/news/">新闻动态</a>
+                </li>
+                <li class="yiji">
+                    <a class="text" href="/contact/">联系我们</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 4img -->
+    {% for all_Index in all_Indexs %}
+        <div class="img4" style="background-image: url({{ MEDIA_URL }}{{ all_Index.image }});height:{{ all_Index.high }}px"></div>
+    {% endfor %}
+    <!-- 药柜产品 -->
+    <div class="box yaogui sypage">
+        <h4 class="titt">药柜产品</h4>
+        <p class="subtitt"><span>Medicine cabinet products</span></p>
+        <div class="box-big">
+            {% for all_Product in all_Products%}
+                {% if all_Product.show == 'yes' %}
+                    <div class="item">
+                        <img src={{ MEDIA_URL }}{{ all_Product.image }} alt="">
+                        <p class="info">{{ all_Product.title }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- 门店展示 -->
+    <section class="f8back">
+        <div class="box mendian sypage">
+            <h4 class="titt">门店展示</h4>
+            <p class="subtitt"><span>store display</span></p>
+            <br><br><br><br><br><br><br><br><br>
+            <div id="focus_Box">
+                <span class="prev">&nbsp;</span>
+                <span class="next">&nbsp;</span>
+                <ul>
+                    {% for all_Store in all_Stores%}
+                        {% if all_Store.show == "yes" %}
+                            <li>
+                                <a href="javascript:void(0)"><img width="657" height="399" alt="{{ all_Store.title }}" src={{ MEDIA_URL }}{{ all_Store.image }} /></a>
+                                <p>
+                                    <span>{{ all_Store.title }}</span>
+                                    <a href="javascript:void(0)" class="imgs-scroll-btn">分享</a>
+                                </p>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <!-- 新闻动态 -->
+    <div class="box xinwen sypage">
+        <h4 class="titt">新闻动态</h4>
+        <p class="subtitt"><span>News information</span></p>
+        <div class="swiper-container news-banner">
+            <div class="swiper-wrapper">
+                {% for all_New in all_News %}
+                    {% if all_New.show == "yes" %}
+                        <div class="swiper-slide">
+                            <p class="month">{{ all_New.add_time.month }}-{{ all_New.add_time.day }}</p>
+                            <p class="year">{{ all_New.add_time.year }}</p>
+                            <p class="name">{{ all_New.title }}</p>
+                            <div class="duanfen"></div>
+                            <div class="xiao">心全健康依托中医药食同源养生文化，秉承”聚百年孕产调养精粹，只为母子健康”理念</div>
+                            <div class="duanfen"></div>
+                            <a href="#" class="more">MORE</a>
+                            <img src={{ MEDIA_URL }}{{ all_New.image }} class="tu" alt="">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pn">
+            <div class="lb"></div>
+            <div class="rb"></div>
+        </div>
+    </div>
+
+    <!-- 联系我们 -->
+    <section class="f8back">
+        <div class="box sypage lianxi">
+            <h4 class="titt">联系我们</h4>
+            <p class="subtitt"><span>Contact Us</span></p>
+            <br><br><br>
+            <div class="jiam">
+                <span class="mt">加盟热线：</span>
+                <div class="tel">
+                    <span>021-66080886</span>
+                    <span>400-8866-170</span>
+                </div>
+            </div>
+            <div class="cod">
+                <img src={% static "./images/coder_06.png" %} class="fu" alt="">
+            </div>
+            <img src={% static "./images/indcod_03.png" %} alt="" class="ren">
+        </div>
+    </section>
+
+    <!-- foot -->
+    <div class="foot">
+        <div class="box clear">
+            <img src={% static "./images/pic1_40.png" %} class="left" alt="">
+            <div class="fnav left">
+                <a href="show.html">企业介绍</a>
+                <a href="xq.html">心全 Health Box</a>
+                <a href="brand.html">品牌天地</a>
+                <a href="lesson.html">心全课堂</a>
+                <a href="honor.html">企业资讯</a>
+                <a href="contact.html">联系我们</a>
+                <p class="copy">
+                    © Copyright 2012/2016 All Right reserved by FrieslandCampina Trading 沪ICP备16047606号
+                </p>
+            </div>
+            <div class="ftel right">
+                <small>Telephone</small> 400-8866-170
+            </div>
+        </div>
+    </div>
+    <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
+
+    <script src={% static "js/jauery.js" %}></script>
+    <script src={% static "js/swiper.js" %}></script>
+    <script src={% static "js/ZoomPic.js" %}></script>
+    <script src={% static "js/main.js" %}></script>
+</body>
+
+</html>
