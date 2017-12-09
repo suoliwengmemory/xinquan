@@ -33,9 +33,9 @@ sys.path.insert(0,os.path.join(BASE_DIR, "Index"))
 SECRET_KEY = 'wnbo1w*e-5rqz#zw(pg+^vz$$o*n^or_rsza4wm6s$yo%2vjee'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.mohennet.xyz']
 
 
 # Application definition
