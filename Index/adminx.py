@@ -4,7 +4,7 @@ from .models import Index
 
 class IndexAdmin(object):
 
-    list_display = ["title", "high", "image", "add_time"]
-    search_fields = ["title", "high", "image"]
-    list_filter = ["title", "high", "image", "add_time"]
+    list_display = ["title", "high", "image", "url", "add_time"]
+    search_fields = ["title", "high", "image", "url"]
+    list_filter = ["title", "high", "image", "url", "add_time"]
 xadmin.site.register(Index, IndexAdmin)

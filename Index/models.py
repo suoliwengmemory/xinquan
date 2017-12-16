@@ -14,7 +14,8 @@ from datetime import datetime
 class Index(models.Model):
     title = models.CharField(max_length=100, verbose_name=u"图片名")
     high = models.CharField(max_length=30, verbose_name=u"图片高度")
-    image = models.ImageField(upload_to="shouye/%Y/%m", verbose_name=u"封面", max_length=100)
+    image = models.ImageField(upload_to="shouye/%Y/%m", verbose_name=u"封面", blank=True, default="", max_length=100)
+    url = models.URLField(verbose_name=u"链接地址", max_length=100, blank=True, default="")
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
