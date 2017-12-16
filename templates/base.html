@@ -23,38 +23,48 @@
     <!-- content -->
     <div class="box page clear">
         <div class="zuo">
+            {% block menu2 %}
             <div class="tou">
                 门店展示 <br>STORE DISPLAY
             </div>
+            {% endblock menu2 %}
             {% block menu1 %}
             {% endblock menu1 %}
+            {% for all_Side in all_Sides%}
             <div class="m-tel">
-                <small>全国统一免费服务热线</small> 400-8866-170
+                <small>全国统一免费服务热线</small> {{ all_Side.Telephone }}
             </div>
+            {% endfor %}
         </div>
         {% block main %}
         {% endblock main %}
     </div>
     <!-- foot -->
+    {% block last %}
     <div class="foot">
         <div class="box clear">
-            <img src={% static "./images/pic1_40.png" %} class="left" alt="">
+            {% for all_Tabbar in all_Tabbars %}
+            <img src={{ MEDIA_URL }}{{ all_Tabbar.image }} class="left" alt="">
             <div class="fnav left">
-                <a href="show.html">企业介绍</a>
-                <a href="xq.html">心全 Health Box</a>
-                <a href="brand.html">品牌天地</a>
-                <a href="lesson.html">心全课堂</a>
-                <a href="honor.html">企业资讯</a>
-                <a href="contact.html">联系我们</a>
+                <a href="/show/">{{ all_Tabbars.bar1 }}</a>
+                <a href="/xq/">{{ all_Tabbar.bar2 }}</a>
+                <a href="/goods/">{{ all_Tabbar.bar3 }}</a>
+                <a href="/store/">{{ all_Tabbar.bar4 }}</a>
+                <a href="/lesson/">{{ all_Tabbar.bar5 }}</a>
+                <a href="/news/">{{ all_Tabbar.bar6 }}</a>
+                <a href="/contact/">{{ all_Tabbar.bar7 }}</a>
                 <p class="copy">
-                    © Copyright 2012/2016 All Right reserved by FrieslandCampina Trading 沪ICP备16047606号
+                    {{ all_Tabbar.record }}
                 </p>
             </div>
             <div class="ftel right">
-                <small>Telephone</small> 400-8866-170
+                <small>Telephone</small> {{ all_Tabbar.Telephone }}
             </div>
+            {% endfor %}
         </div>
     </div>
+    {% endblock last %}
+
     <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
 
     <script src={% static "js/jauery.js" %}></script>
