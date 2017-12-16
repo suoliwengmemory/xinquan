@@ -14,50 +14,54 @@
 
 <body>
     <!-- nav -->
+    {% for all_Bow in all_Bows %}
     <div class="topBox">
         <div class="top box">
-            <a href="index.html">
-                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            <a href="">
+                <img src={{ MEDIA_URL }}{{ all_Bow.image }} alt="" class="logo">
             </a>
             <div class="top-tel">
                 <span>招商热线</span>
-                <i>400-8866-170</i>
+                <i>{{ all_Bow.Telephone }}</i>
             </div>
             <ul class="nav">
                 <li class="yiji">
-                    <a class="text" href="/show/">企业介绍</a>
+                    <a class="text" href="/show/">{{ all_Bow.bar1 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/xq/">心全 Health Box</a>
+                    <a class="text" href="/xq/">{{ all_Bow.bar2 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="javascript:void(0);">药柜产品</a>
+                    <a class="text" href="/goods/">{{ all_Bow.bar3 }}</a>
                     <ul class="erjibox">
-                        {% for all_Kind in all_Kinds%}
+                        {% for all_Kind in all_Kinds %}
                             <li class="erji">
-                                <a href="/goods/">{{ all_Kind.kind }}</a>
+                                <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                             </li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/store/">门店展示</a>
+                    <a class="text" href="/store/">{{ all_Bow.bar4 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/lesson/">心全课堂</a>
+                    <a class="text" href="/lesson/">{{ all_Bow.bar5 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/news/">新闻动态</a>
+                    <a class="text" href="/news/">{{ all_Bow.bar6 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/contact/">联系我们</a>
+                    <a class="text" href="/contact/">{{ all_Bow.bar7 }}</a>
                 </li>
             </ul>
         </div>
     </div>
+    {% endfor %}
+
+
     <!-- 4img -->
     {% for all_Index in all_Indexs %}
-        <div class="img4" style="background-image: url({{ MEDIA_URL }}{{ all_Index.image }});height:{{ all_Index.high }}px"></div>
+        <div class="img4" style="background-image: url({{ MEDIA_URL }}{{ all_Index.image }});height:{{ all_Index.high }}px" {% if all_Index.url %}onclick="javascript:window.location.href='{{ all_Index.url }}'"{% else %}href="javascript：void(0);"{% endif %}></div>
     {% endfor %}
     <!-- 药柜产品 -->
     <div class="box yaogui sypage">
@@ -66,7 +70,7 @@
         <div class="box-big">
             {% for all_Product in all_Products%}
                 {% if all_Product.show == 'yes' %}
-                    <div class="item">
+                    <div class="item" onclick="javascript:window.location.href='/goodsdet/{{ all_Product.id }}'">
                         <img src={{ MEDIA_URL }}{{ all_Product.image }} alt="">
                         <p class="info">{{ all_Product.title }}</p>
                     </div>
@@ -86,7 +90,7 @@
                 <ul>
                     {% for all_Store in all_Stores%}
                         {% if all_Store.show == "yes" %}
-                            <li>
+                            <li  onclick="javascript:window.location.href='/store/'">
                                 <a href="javascript:void(0)"><img width="657" height="399" alt="{{ all_Store.title }}" src={{ MEDIA_URL }}{{ all_Store.image }} /></a>
                                 <p>
                                     <span>{{ all_Store.title }}</span>
@@ -97,6 +101,9 @@
                     {% endfor %}
                 </ul>
             </div>
+            <p class="cha_more">
+                <a href="/store/">查看更多门店</a>
+            </p>
 
         </div>
     </section>
@@ -104,7 +111,7 @@
     <div class="box xinwen sypage">
         <h4 class="titt">新闻动态</h4>
         <p class="subtitt"><span>News information</span></p>
-        <div class="swiper-container news-banner">
+        <div class="swiper-container news-banner" data-space-between='30' >
             <div class="swiper-wrapper">
                 {% for all_New in all_News %}
                     {% if all_New.show == "yes" %}
@@ -113,9 +120,9 @@
                             <p class="year">{{ all_New.add_time.year }}</p>
                             <p class="name">{{ all_New.title }}</p>
                             <div class="duanfen"></div>
-                            <div class="xiao">心全健康依托中医药食同源养生文化，秉承”聚百年孕产调养精粹，只为母子健康”理念</div>
+                            <div class="xiao">{% autoescape off %}{{ all_New.detail1 }}{% endautoescape %}</div>
                             <div class="duanfen"></div>
-                            <a href="#" class="more">MORE</a>
+                            <a href="/newsdet/{{ all_New.id }}" class="more">MORE</a>
                             <img src={{ MEDIA_URL }}{{ all_New.image }} class="tu" alt="">
                         </div>
                     {% endif %}
@@ -151,21 +158,24 @@
     <!-- foot -->
     <div class="foot">
         <div class="box clear">
-            <img src={% static "./images/pic1_40.png" %} class="left" alt="">
+            {% for all_Tabbar in all_Tabbars %}
+            <img src={{ MEDIA_URL }}{{ all_Tabbar.image }} class="left" alt="">
             <div class="fnav left">
-                <a href="show.html">企业介绍</a>
-                <a href="xq.html">心全 Health Box</a>
-                <a href="brand.html">品牌天地</a>
-                <a href="lesson.html">心全课堂</a>
-                <a href="honor.html">企业资讯</a>
-                <a href="contact.html">联系我们</a>
+                <a href="/show/">{{ all_Tabbar.bar1 }}</a>
+                <a href="/xq/">{{ all_Tabbar.bar2 }}</a>
+                <a href="/goods/">{{ all_Tabbar.bar3 }}</a>
+                <a href="/store/">{{ all_Tabbar.bar4 }}</a>
+                <a href="/lesson/">{{ all_Tabbar.bar5 }}</a>
+                <a href="/news/">{{ all_Tabbar.bar6 }}</a>
+                <a href="/contact/">{{ all_Tabbar.bar7 }}</a>
                 <p class="copy">
-                    © Copyright 2012/2016 All Right reserved by FrieslandCampina Trading 沪ICP备16047606号
+                    {{ all_Tabbar.record }}
                 </p>
             </div>
             <div class="ftel right">
-                <small>Telephone</small> 400-8866-170
+                <small>Telephone</small> {{ all_Tabbar.Telephone }}
             </div>
+            {% endfor %}
         </div>
     </div>
     <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
@@ -177,3 +187,4 @@
 </body>
 
 </html>
+

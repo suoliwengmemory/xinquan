@@ -6,47 +6,49 @@
 {% endblock head %}
 
 {% block menu %}
+    {% for all_Bow in all_Bows %}
     <div class="topBox">
         <div class="top box">
-            <a href="index.html">
-                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            <a href="/index/">
+                <img src={{ MEDIA_URL }}{{ all_Bow.image }} alt="" class="logo">
             </a>
             <div class="top-tel">
                 <span>招商热线</span>
-                <i>400-8866-170</i>
+                <i>{{ all_Bow.Telephone }}</i>
             </div>
             <ul class="nav">
                 <li class="yiji">
-                    <a class="text" href="/show/">企业介绍</a>
+                    <a class="text" href="/show/">{{ all_Bow.bar1 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/xq/">心全 Health Box</a>
+                    <a class="text" href="/xq/">{{ all_Bow.bar2 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/goods/">药柜产品</a>
+                    <a class="text" href="/goods/">{{ all_Bow.bar3 }}</a>
                     <ul class="erjibox">
                         {% for all_Kind in all_Kinds %}
                             <li class="erji">
-                                <a href="/goods/">{{ all_Kind.kind}}</a>
+                                <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                             </li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/store/">门店展示</a>
+                    <a class="text" href="/store/">{{ all_Bow.bar4 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/lesson/">心全课堂</a>
+                    <a class="text" href="/lesson/">{{ all_Bow.bar5 }}</a>
                 </li>
                 <li class="yiji active">
-                    <a class="text" href="/news/">新闻动态</a>
+                    <a class="text" href="/news/">{{ all_Bow.bar6 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/contact/">联系我们</a>
+                    <a class="text" href="/contact/">{{ all_Bow.bar7 }}</a>
                 </li>
             </ul>
         </div>
     </div>
+    {% endfor %}
 {% endblock menu %}
 
 {% block image %}
@@ -55,48 +57,62 @@
     {% endfor %}
 {% endblock image %}
 
+{% block menu2 %}
+    {% for all_Theme in all_Themes %}
+    <div class="tou">
+        {% autoescape off %}
+            {{ all_Theme.detail }}
+        {% endautoescape %}
+    </div>
+    {% endfor %}
+{% endblock menu2 %}
+
 {% block menu1 %}
+    {% for all_Side in all_Sides %}
     <ul class="m-nav">
         <li class="yiji">
-            <a class="text" href="/index/">返回首页</a>
+            <a class="text" href="/index/">{{ all_Side.bar }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/show/">企业介绍</a>
+            <a class="text" href="/show/">{{ all_Side.bar1 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/xq/">心全 Health Box</a>
+            <a class="text" href="/xq/">{{ all_Side.bar2 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/goods/">药柜产品</a>
+            <a class="text" href="/goods/">{{ all_Side.bar3 }}</a>
             <ul class="erjibox">
                 {% for all_Kind in all_Kinds %}
                     <li class="erji">
-                        <a href="javascript:void(0)">{{ all_Kind.kind }}</a>
+                        <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                     </li>
                 {% endfor %}
             </ul>
         </li>
         <li class="yiji">
-            <a class="text" href="/store/">门店展示</a>
+            <a class="text" href="/store/">{{ all_Side.bar4 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/lesson/">心全课堂</a>
+            <a class="text" href="/lesson/">{{ all_Side.bar5 }}</a>
         </li>
         <li class="yiji active">
-            <a class="text" href="/news/">新闻动态</a>
+            <a class="text" href="/news/">{{ all_Side.bar6 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/contact/">联系我们</a>
+            <a class="text" href="/contact/">{{ all_Side.bar7 }}</a>
         </li>
     </ul>
+    {% endfor %}
 {% endblock menu1 %}
 
 {% block main %}
 <div class="you">
+    {% for all_Theme in all_Themes %}
     <div class="dh">
-        <a href="index.html">首页</a> >
-        <a href="news.html">新闻动态</a>
+        <a href="/index/">首页</a> >
+        <a href="/news/">{{ all_Theme.title2 }}</a>
     </div>
+    {% endfor %}
     <div class="classcont">
         {% for all_New in all_News.object_list %}
             <div class="new-item">
@@ -105,7 +121,7 @@
                     <a href="/newsdet/{{ all_New.id }}" class="titt">{{ all_New.title }}</a>
                     <p class="time">{{ all_New.add_time }}</p>
                     <p class="jian">
-                        {{ all_New.detail }}
+                        {% autoescape off %}{{ all_New.detail1 }}{% endautoescape %}
                     </p>
                 </div>
             </div>
@@ -133,14 +149,34 @@
         {% else %}
             <li></li>
         {% endif %}
-{#            <li><a href="javascript:void(0)"><</a></li>#}
-{#            <li class="active"><a href="javascript:void(0)">1</a></li>#}
-{#            <li><a href="javascript:void(0)">2</a></li>#}
-{#            <li><a href="javascript:void(0)">3</a></li>#}
-{#            <li><a href="javascript:void(0)">></a></li>#}
         </ul>
         <br><br><br><br>
     </div>
 </div>
 {% endblock main %}
+
+{% block last %}
+    <div class="foot">
+        <div class="box clear">
+            {% for all_Tabbar in all_Tabbars %}
+            <img src={{ MEDIA_URL }}{{ all_Tabbar.image }} class="left" alt="">
+            <div class="fnav left">
+                <a href="/show/">{{ all_Tabbar.bar1 }}</a>
+                <a href="/xq/">{{ all_Tabbar.bar2 }}</a>
+                <a href="/goods/">{{ all_Tabbar.bar3 }}</a>
+                <a href="/store/">{{ all_Tabbar.bar4 }}</a>
+                <a href="/lesson/">{{ all_Tabbar.bar5 }}</a>
+                <a href="/news/">{{ all_Tabbar.bar6 }}</a>
+                <a href="/contact/">{{ all_Tabbar.bar7 }}</a>
+                <p class="copy">
+                    {{ all_Tabbar.record }}
+                </p>
+            </div>
+            <div class="ftel right">
+                <small>Telephone</small> {{ all_Tabbar.Telephone }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock last %}
 

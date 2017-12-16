@@ -6,47 +6,49 @@
 {% endblock head %}
 
 {% block menu %}
+    {% for all_Bow in all_Bows %}
     <div class="topBox">
         <div class="top box">
-            <a href="index.html">
-                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            <a href="/index/">
+                <img src={{ MEDIA_URL }}{{ all_Bow.image }} alt="" class="logo">
             </a>
             <div class="top-tel">
                 <span>招商热线</span>
-                <i>400-8866-170</i>
+                <i>{{ all_Bow.Telephone }}</i>
             </div>
             <ul class="nav">
                 <li class="yiji">
-                    <a class="text" href="/show/">企业介绍</a>
+                    <a class="text" href="/show/">{{ all_Bow.bar1 }}</a>
                 </li>
                 <li class="yiji active">
-                    <a class="text" href="/xq/">心全 Health Box</a>
+                    <a class="text" href="/xq/">{{ all_Bow.bar2 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/goods/">药柜产品</a>
+                    <a class="text" href="/goods/">{{ all_Bow.bar3 }}</a>
                     <ul class="erjibox">
                         {% for all_Kind in all_Kinds %}
                             <li class="erji">
-                                <a href="/goods/">{{ all_Kind.kind}}</a>
+                                <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                             </li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/store/">门店展示</a>
+                    <a class="text" href="/store/">{{ all_Bow.bar4 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/lesson/">心全课堂</a>
+                    <a class="text" href="/lesson/">{{ all_Bow.bar5 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/news/">新闻动态</a>
+                    <a class="text" href="/news/">{{ all_Bow.bar6 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/contact/">联系我们</a>
+                    <a class="text" href="/contact/">{{ all_Bow.bar7 }}</a>
                 </li>
             </ul>
         </div>
     </div>
+    {% endfor %}
 {% endblock menu %}
 
 {% block image %}
@@ -55,72 +57,94 @@
     {% endfor %}
 {% endblock image %}
 
+{% block menu2 %}
+    {% for all_Theme in all_Themes %}
+    <div class="tou">
+        {% autoescape off %}
+            {{ all_Theme.detail }}
+        {% endautoescape %}
+    </div>
+    {% endfor %}
+{% endblock menu2 %}
+
 
 {% block menu1 %}
+    {% for all_Side in all_Sides %}
     <ul class="m-nav">
         <li class="yiji">
-            <a class="text" href="/index/">返回首页</a>
+            <a class="text" href="/index/">{{ all_Side.bar }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/show/">企业介绍</a>
+            <a class="text" href="/show/">{{ all_Side.bar1 }}</a>
         </li>
         <li class="yiji active">
-            <a class="text" href="/xq/">心全 Health Box</a>
+            <a class="text" href="/xq/">{{ all_Side.bar2 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/goods/">药柜产品</a>
+            <a class="text" href="/goods/">{{ all_Side.bar3 }}</a>
             <ul class="erjibox">
                 {% for all_Kind in all_Kinds %}
                     <li class="erji">
-                        <a href="javascript:void(0)">{{ all_Kind.kind }}</a>
+                        <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                     </li>
                 {% endfor %}
             </ul>
         </li>
         <li class="yiji">
-            <a class="text" href="/store/">门店展示</a>
+            <a class="text" href="/store/">{{ all_Side.bar4 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/lesson/">心全课堂</a>
+            <a class="text" href="/lesson/">{{ all_Side.bar5 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/news/">新闻动态</a>
+            <a class="text" href="/news/">{{ all_Side.bar6 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/contact/">联系我们</a>
+            <a class="text" href="/contact/">{{ all_Side.bar7 }}</a>
         </li>
     </ul>
+    {% endfor %}
 {% endblock menu1 %}
+
+
 
 {% block main %}
 <div class="you">
+    {% for all_Theme in all_Themes %}
     <div class="dh">
-        <a href="index.html">首页</a> >
-        <a href="xq.html">心全Health Box</a>
+        <a href="/index/">首页</a> >
+        <a href="/xq/">{{ all_Theme.title2 }}</a>
     </div>
+    {% endfor %}
+    {% for all_XQ in all_XQs %}
     <div class="cont xqcont">
-        <p><span class="red">心全Health Box（心全母婴健康专区）</span>，是公司本着“以满足母婴顾客健康需求为核心”的经营理念，改变传统母婴店的经营模式，将“连锁心全健康专区（药柜+健康专区）”建成普及科普知识课堂、健康园地，让母婴人群一站式满足健康的需求。</p>
-        <p>心全Health Box采用母婴门店加盟形式合作，项目分为三个等级，分别是：</p>
-        <div class="ltu clear">
-            <img src={% static "./images/p2_05.png" %} alt="">
-            <p>加盟母婴店可以获得乙类OTC药品售卖资格，可销售所供系统内的所有母婴类乙类OTC药品及母婴类医疗器械。提供专门的药品上岗培训、药柜管理营运培训以及远程管理咨询服务。</p>
-        </div>
-        <div class="ltu clear">
-            <img src={% static "./images/p2_08.png" %} alt="">
-            <p>涵盖心全药柜内容以外，加盟母婴店还可以获得母婴营养知识、母婴营养品销售技巧等知识培训与营运培训，以及中医孕产课程和远程健康咨询服务。
-            </p>
-        </div>
-        <div class="ltu clear">
-            <img src={% static "./images/p2_10.png" %} alt="">
-            <p>涵盖心全药柜、心全健康专区内容以外，还特别提供中医孕产在线服务，与孕产营养产品数据分析。</p>
-        </div>
-        <div class="ys">
-            <span>心全Health Box优势：</span> 心全Health Box项目能够帮助母婴门店建立一线销售人员专业度（母婴营养与保健知识培训）,提升整体母婴行业人才素养。还能够为母婴门店内提供健康教育和咨询服务，提高母婴人群健康意识。心全Health Box提供选品、配送、营收分析等一系列信息化服务，降低经营成本，规范化、综合化门店经营管理。依托专业数据分析，我们还能优化门店的产品品类。同时心全Health Box提供健康讲座，中医远程问诊、诊疗咨询、孕产解决方案等增值服务。
-        </div>
-        <div class="zs">
-            <img src={% static "./images/p2_13.png" %} alt="">
-            <p><span>心全Health Box招商热线</span><i>021-66080886</i></p>
-        </div>
+        {% autoescape off %}{{ all_XQ.detail }}{% endautoescape %}
     </div>
+    {% endfor %}
 </div>
 {% endblock main %}
+
+{% block last %}
+    <div class="foot">
+        <div class="box clear">
+            {% for all_Tabbar in all_Tabbars %}
+            <img src={{ MEDIA_URL }}{{ all_Tabbar.image }} class="left" alt="">
+            <div class="fnav left">
+                <a href="/show/">{{ all_Tabbar.bar1 }}</a>
+                <a href="/xq/">{{ all_Tabbar.bar2 }}</a>
+                <a href="/goods/">{{ all_Tabbar.bar3 }}</a>
+                <a href="/store/">{{ all_Tabbar.bar4 }}</a>
+                <a href="/lesson/">{{ all_Tabbar.bar5 }}</a>
+                <a href="/news/">{{ all_Tabbar.bar6 }}</a>
+                <a href="/contact/">{{ all_Tabbar.bar7 }}</a>
+                <p class="copy">
+                    {{ all_Tabbar.record }}
+                </p>
+            </div>
+            <div class="ftel right">
+                <small>Telephone</small> {{ all_Tabbar.Telephone }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock last %}

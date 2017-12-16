@@ -2,51 +2,53 @@
 {% load static %}
 
 {% block head %}
-    <title>心全健康-心全课堂</title>
+    <title>心全健康-企业介绍</title>
 {% endblock head %}
 
 {% block menu %}
+    {% for all_Bow in all_Bows %}
     <div class="topBox">
         <div class="top box">
-            <a href="index.html">
-                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            <a href="/index/">
+                <img src={{ MEDIA_URL }}{{ all_Bow.image }} alt="" class="logo">
             </a>
             <div class="top-tel">
                 <span>招商热线</span>
-                <i>400-8866-170</i>
+                <i>{{ all_Bow.Telephone }}</i>
             </div>
             <ul class="nav">
                 <li class="yiji active">
-                    <a class="text" href="/show/">企业介绍</a>
+                    <a class="text" href="/show/">{{ all_Bow.bar1 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/xq/">心全 Health Box</a>
+                    <a class="text" href="/xq/">{{ all_Bow.bar2 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/goods/">药柜产品</a>
+                    <a class="text" href="/goods/">{{ all_Bow.bar3 }}</a>
                     <ul class="erjibox">
                         {% for all_Kind in all_Kinds %}
                             <li class="erji">
-                                <a href="/goods/">{{ all_Kind.kind}}</a>
+                                <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                             </li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/store/">门店展示</a>
+                    <a class="text" href="/store/">{{ all_Bow.bar4 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/lesson/">心全课堂</a>
+                    <a class="text" href="/lesson/">{{ all_Bow.bar5 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/news/">新闻动态</a>
+                    <a class="text" href="/news/">{{ all_Bow.bar6 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/contact/">联系我们</a>
+                    <a class="text" href="/contact/">{{ all_Bow.bar7 }}</a>
                 </li>
             </ul>
         </div>
     </div>
+    {% endfor %}
 {% endblock menu %}
 
 {% block image %}
@@ -55,90 +57,90 @@
     {% endfor %}
 {% endblock image %}
 
+{% block menu2 %}
+    {% for all_Theme in all_Themes %}
+    <div class="tou">
+        {% autoescape off %}
+            {{ all_Theme.detail }}
+        {% endautoescape %}
+    </div>
+    {% endfor %}
+{% endblock menu2 %}
+
 {% block menu1 %}
+    {% for all_Side in all_Sides %}
     <ul class="m-nav">
         <li class="yiji">
-            <a class="text" href="/index/">返回首页</a>
+            <a class="text" href="/index/">{{ all_Side.bar }}</a>
         </li>
         <li class="yiji active">
-            <a class="text" href="/show/">企业介绍</a>
+            <a class="text" href="/show/">{{ all_Side.bar1 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/xq/">心全 Health Box</a>
+            <a class="text" href="/xq/">{{ all_Side.bar2 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/goods/">药柜产品</a>
+            <a class="text" href="/goods/">{{ all_Side.bar3 }}</a>
             <ul class="erjibox">
                 {% for all_Kind in all_Kinds %}
                     <li class="erji">
-                        <a href="javascript:void(0)">{{ all_Kind.kind }}</a>
+                        <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                     </li>
                 {% endfor %}
             </ul>
         </li>
         <li class="yiji">
-            <a class="text" href="/store/">门店展示</a>
+            <a class="text" href="/store/">{{ all_Side.bar4 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/lesson/">心全课堂</a>
+            <a class="text" href="/lesson/">{{ all_Side.bar5 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/news/">新闻动态</a>
+            <a class="text" href="/news/">{{ all_Side.bar6 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/contact/">联系我们</a>
+            <a class="text" href="/contact/">{{ all_Side.bar7 }}</a>
         </li>
     </ul>
+    {% endfor %}
 {% endblock menu1 %}
 
 {% block main %}
 <div class="you">
+    {% for all_Theme in all_Themes %}
     <div class="dh">
-        <a href="index.html">首页</a> >
-        <a href="honor.html">企业资讯</a>
+        <a href="/index/">首页</a> >
+        <a href="/show/">{{ all_Theme.title2 }}</a>
     </div>
-    <div class="cont showcont" style="background-image: none">
-        <p><span class="red">上海心全健康科技有限公司</span>，以打造专业实体母婴健康专区为核心，为母婴门店提供高品质的孕婴童药品、健康产品以及优质的项目培训。目前公司主营项目：</p>
-        <div class="ltubox">
-            <div class="ltu clear">
-                <img src={% static "./images/show_03.png" %} alt="">
-                <p>
-                    <span class="red">心全Health Box</span>致力于打造母婴实体药食同区平台
-                </p>
-            </div>
-            <div class="ltu clear">
-                <img src={% static "./images/show_05.png" %} alt="">
-                <p>
-                    <span class="red">心全课堂</span>母婴零售业的课堂
-                </p>
-            </div>
-            <div class="ltu clear">
-                <img src={% static "./images/show_07.png" %} alt="">
-                <p>
-                    <span class="red">月子煲姆</span>专业孕产调理品牌
-                </p>
-            </div>
-        </div>
-        <div class="ltubox">
-            <div class="ltu clear">
-                <img src={% static "./images/show_12.png" %} alt="">
-            </div>
-            <div class="ltu clear">
-                <img src={% static "./images/show_14.png" %} alt="">
-            </div>
-        </div>
-        <div class="ys">
-            心全健康发扬中医在妇幼健康服务中的优势和作用，结合现代营养学和健康管理学，助力广大母婴人群更科学、舒适的生活，推动亿万女性与儿童的健康发展。公司成立1年，目前与上海、浙江、安徽、山东、山西、湖北、广州、海南、云南9个省市等地近2000多家婴童连锁机构合作。
-        </div>
-        {% for all_Company in all_Companys %}
-            <div class="wh">
-                <p class="titt">
-                    <img src={{ MEDIA_URL }}{{ all_Company.image }} alt=""> {{ all_Company.title }}
-                </p>
-                <p class="info">{% autoescape off %}{{ all_Company.detail }}{% endautoescape %}</p>
-            </div>
-        {% endfor %}
-        <br><br><br>
+    {% endfor %}
+    {% for all_Company in all_Companys %}
+        {% autoescape off %}{{ all_Company.detail }}{% endautoescape %}
+    {% endfor %}
     </div>
 </div>
 {% endblock main %}
+
+{% block last %}
+    <div class="foot">
+        <div class="box clear">
+            {% for all_Tabbar in all_Tabbars %}
+            <img src={{ MEDIA_URL }}{{ all_Tabbar.image }} class="left" alt="">
+            <div class="fnav left">
+                <a href="/show/">{{ all_Tabbar.bar1 }}</a>
+                <a href="/xq/">{{ all_Tabbar.bar2 }}</a>
+                <a href="/goods/">{{ all_Tabbar.bar3 }}</a>
+                <a href="/store/">{{ all_Tabbar.bar4 }}</a>
+                <a href="/lesson/">{{ all_Tabbar.bar5 }}</a>
+                <a href="/news/">{{ all_Tabbar.bar6 }}</a>
+                <a href="/contact/">{{ all_Tabbar.bar7 }}</a>
+                <p class="copy">
+                    {{ all_Tabbar.record }}
+                </p>
+            </div>
+            <div class="ftel right">
+                <small>Telephone</small> {{ all_Tabbar.Telephone }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock last %}

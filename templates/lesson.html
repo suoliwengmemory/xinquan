@@ -5,48 +5,51 @@
     <title>心全健康-心全课堂</title>
 {% endblock head %}
 
+
 {% block menu %}
+    {% for all_Bow in all_Bows %}
     <div class="topBox">
         <div class="top box">
-            <a href="index.html">
-                <img src={% static "./images/pic1_03.png" %} alt="" class="logo">
+            <a href="/index/">
+                <img src={{ MEDIA_URL }}{{ all_Bow.image }} alt="" class="logo">
             </a>
             <div class="top-tel">
                 <span>招商热线</span>
-                <i>400-8866-170</i>
+                <i>{{ all_Bow.Telephone }}</i>
             </div>
             <ul class="nav">
                 <li class="yiji">
-                    <a class="text" href="/show/">企业介绍</a>
+                    <a class="text" href="/show/">{{ all_Bow.bar1 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/xq/">心全 Health Box</a>
+                    <a class="text" href="/xq/">{{ all_Bow.bar2 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/goods/">药柜产品</a>
+                    <a class="text" href="/goods/">{{ all_Bow.bar3 }}</a>
                     <ul class="erjibox">
                         {% for all_Kind in all_Kinds %}
                             <li class="erji">
-                                <a href="/goods/">{{ all_Kind.kind}}</a>
+                                <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                             </li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/store/">门店展示</a>
+                    <a class="text" href="/store/">{{ all_Bow.bar4 }}</a>
                 </li>
                 <li class="yiji active">
-                    <a class="text" href="/lesson/">心全课堂</a>
+                    <a class="text" href="/lesson/">{{ all_Bow.bar5 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/news/">新闻动态</a>
+                    <a class="text" href="/news/">{{ all_Bow.bar6 }}</a>
                 </li>
                 <li class="yiji">
-                    <a class="text" href="/contact/">联系我们</a>
+                    <a class="text" href="/contact/">{{ all_Bow.bar7 }}</a>
                 </li>
             </ul>
         </div>
     </div>
+    {% endfor %}
 {% endblock menu %}
 
 {% block image %}
@@ -55,103 +58,93 @@
     {% endfor %}
 {% endblock image %}
 
+{% block menu2 %}
+    {% for all_Theme in all_Themes %}
+    <div class="tou">
+    {% autoescape off %}
+        {{ all_Theme.detail }}
+    {% endautoescape %}
+    </div>
+    {% endfor %}
+{% endblock menu2 %}
+
 {% block menu1 %}
+    {% for all_Side in all_Sides %}
     <ul class="m-nav">
         <li class="yiji">
-            <a class="text" href="/index/">返回首页</a>
+            <a class="text" href="/index/">{{ all_Side.bar }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/show/">企业介绍</a>
+            <a class="text" href="/show/">{{ all_Side.bar1 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/xq/">心全 Health Box</a>
+            <a class="text" href="/xq/">{{ all_Side.bar2 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/goods/">药柜产品</a>
+            <a class="text" href="/goods/">{{ all_Side.bar3 }}</a>
             <ul class="erjibox">
                 {% for all_Kind in all_Kinds %}
                     <li class="erji">
-                        <a href="javascript:void(0)">{{ all_Kind.kind }}</a>
+                        <a href="/goods/?kind={{ all_Kind.id }}">{{ all_Kind.name}}</a>
                     </li>
                 {% endfor %}
             </ul>
         </li>
         <li class="yiji">
-            <a class="text" href="/store/">门店展示</a>
+            <a class="text" href="/store/">{{ all_Side.bar4 }}</a>
         </li>
         <li class="yiji active">
-            <a class="text" href="/lesson/">心全课堂</a>
+            <a class="text" href="/lesson/">{{ all_Side.bar5 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/news/">新闻动态</a>
+            <a class="text" href="/news/">{{ all_Side.bar6 }}</a>
         </li>
         <li class="yiji">
-            <a class="text" href="/contact/">联系我们</a>
+            <a class="text" href="/contact/">{{ all_Side.bar7 }}</a>
         </li>
     </ul>
+    {% endfor %}
 {% endblock menu1 %}
 
 
 {% block main %}
 <div class="you">
+    {% for all_Theme in all_Themes %}
     <div class="dh">
-        <a href="index.html">首页</a> >
-        <a href="lesson.html">心全课堂</a>
+        <a href="/index/">首页</a> >
+        <a href="/lesson/">{{ all_Theme.title2 }}</a>
     </div>
-    <div class="cont classcont">
-        <div class="ltubox">
-            <div class="ltu clear">
-                <img src={% static "./images/class_03.png" %} alt="">
-            </div>
-            <div class="ltu clear">
-                <img src={% static "./images/class_05.png" %} alt="">
-            </div>
-        </div>
-        <p class="ys">心全课堂由专业营养协会机构与心全科技健康有限公司共同打造，课程有国家认证的高级营养师进行授课。并特别邀请中医专家现场授课与问诊。<br> 心全课堂提升母婴零售店员专业素养，提供专业母婴健康知识与母婴营养品，药品销售技巧。
-            <br> 心全课堂为母婴零售企业提供中医专家健康养生之法，拓展母婴零售业发展新思路。
-        </p>
-        <div class="item">
-            <div class="titt">母婴营养课堂</div> <br> 母婴营养品作为母婴门店销售的新增长动力，成为母婴门店积极投入的一个品类，但多数母婴门店店员对营养品的了解与销售技巧十分匮乏，所以营养培训班将着重从母婴人群普遍的营养健康知识与母婴渠道店员销售技巧两个角度，用易懂、实用的课程内容让母婴门店店员快速提升专业素养。
-        </div>
-        <div class="item">
-            <div class="titt">课程目的</div> <br>
-            <ul>
-                <li>·增加导购的母婴营养知识，提升服务专业度</li>
-                <li>·传授母婴营养产品销售技巧，提升渠道销售额</li>
-                <li>·提升母婴渠道服务质量，增加顾客粘性，增强行业竞争力</li>
-            </ul>
-        </div>
-        <hr>
-        <div class="item">
-            <div class="titt">中医大讲堂</div> <br> 中医药学依赖民族传统文化的丰沃土壤而生，而几千年来中华民族认识生命、维护健康、防治疾病的思想和方法体系，又形成了璀璨的中医文化。西医学是医技之学，而中医学是医道之学，医技之学是科学，医道之学是人学。“医道”在中国优秀传统文化中是一个古老的概念，学是以人为本、以社会学为本，处处都有"道"的内涵，美的艺术。 本培训班由田海涛中医师，通过其多年中医药学研究以及近三十年上万例的临床经验，潜心理论联系实际和潜修儒释道精髓，为母婴行业管理者带来一套从中医药学与医道角度感悟现代健康养生、母婴健康与企业管理智慧的系列课程。
-        </div>
-        <div class="item">
-            <div class="titt">课程目的</div> <br>
-            <ul>
-                <li>·增进对中医药学与中医文化的认识</li>
-                <li>·学会运用中医四诊法提升对顾客的健康服务</li>
-                <li>·对中医在母婴健康领域的发展有深入地认识</li>
-                <li>·通过了解医道，拓展企业发展与管理思维</li>
-            </ul>
-        </div>
-        <div class="class-k-box">
-            {%for all_Lesson in all_Lessons%}
-                <div class="class-k-item clear">
-                    <section>
-                        <img src={{ MEDIA_URL }}{{ all_Lesson.image }} alt="">
-                        <div class="titt">{{ all_Lesson.title }}</div>
-                        <div class="info">
-                            <ul>
-                                {% autoescape off %}
-                                    {{ all_Lesson.detail }}
-                                {% endautoescape %}
-                            </ul>
-                        </div>
-                    </section>
-                </div>
-            {% endfor %}
-        </div>
-        <br><br><br>
+    {% endfor %}
+    {% for all_Lesson in all_Lessons %}
+        {% autoescape off %}
+            {{ all_Lesson.detail }}
+        {% endautoescape %}
+    {% endfor %}
     </div>
 </div>
 {% endblock main %}
+
+{% block last %}
+    <div class="foot">
+        <div class="box clear">
+            {% for all_Tabbar in all_Tabbars %}
+            <img src={{ MEDIA_URL }}{{ all_Tabbar.image }} class="left" alt="">
+            <div class="fnav left">
+                <a href="/show/">{{ all_Tabbar.bar1 }}</a>
+                <a href="/xq/">{{ all_Tabbar.bar2 }}</a>
+                <a href="/goods/">{{ all_Tabbar.bar3 }}</a>
+                <a href="/store/">{{ all_Tabbar.bar4 }}</a>
+                <a href="/lesson/">{{ all_Tabbar.bar5 }}</a>
+                <a href="/news/">{{ all_Tabbar.bar6 }}</a>
+                <a href="/contact/">{{ all_Tabbar.bar7 }}</a>
+                <p class="copy">
+                    {{ all_Tabbar.record }}
+                </p>
+            </div>
+            <div class="ftel right">
+                <small>Telephone</small> {{ all_Tabbar.Telephone }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock last %}
