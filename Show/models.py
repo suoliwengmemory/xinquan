@@ -12,18 +12,22 @@ from datetime import datetime
 
 
 class Theme(models.Model):
-    image = models.ImageField(upload_to="zhuti/%Y/%m", verbose_name=u"主题", max_length=300)
+    title = models.CharField(max_length=30, verbose_name=u"标题", default="")
+    detail = UEditorField(verbose_name="左侧标签", width=600, height=200, imagePath="zhuti/ueditor/",
+                          filePath="zhuti/ueditor/", default="")
+    title2 = models.CharField(max_length=30, verbose_name=u"正文标签", default="")
+    image = models.ImageField(upload_to="zhuti/%Y/%m", blank=True, verbose_name=u"主题", max_length=300)
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
         verbose_name = u"主题"
         verbose_name_plural = verbose_name
-
+    def __str__(self):
+        return self.title
 
 class Company(models.Model):
     title = models.CharField(max_length=30, verbose_name=u"标题")
-    image = models.ImageField(upload_to="qiye/%Y/%m", verbose_name=u"图标", max_length=100)
-    detail = UEditorField(verbose_name="内容", width=600, height=300, imagePath="qiye/ueditor/",filePath="qiye/ueditor/", default="")
+    detail = UEditorField(verbose_name="内容", width=740, height=600, imagePath="qiye/ueditor/",filePath="qiye/ueditor/", default="")
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
