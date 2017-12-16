@@ -24,6 +24,8 @@ sys.path.insert(0,os.path.join(BASE_DIR, "Contact"))
 sys.path.insert(0,os.path.join(BASE_DIR, "XQ"))
 sys.path.insert(0,os.path.join(BASE_DIR, "Lesson"))
 sys.path.insert(0,os.path.join(BASE_DIR, "Index"))
+sys.path.insert(0,os.path.join(BASE_DIR, "Base"))
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +35,9 @@ sys.path.insert(0,os.path.join(BASE_DIR, "Index"))
 SECRET_KEY = 'wnbo1w*e-5rqz#zw(pg+^vz$$o*n^or_rsza4wm6s$yo%2vjee'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+# ALLOWED_HOSTS = ['120.79.35.179', 'www.mohennet.xyz']
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.mohennet.xyz']
 
@@ -55,6 +59,7 @@ INSTALLED_APPS = [
     'Lesson.apps.LessonConfig',
     'Contact.apps.ContactConfig',
     'Goods.apps.GoodsConfig',
+    'Base.apps.BaseConfig',
     'DjangoUeditor',
     'crispy_forms',
     'xadmin',
@@ -101,7 +106,7 @@ WSGI_APPLICATION = 'xinquan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'xinquan',
+        'NAME': 'xq',
         'USER': 'root',
         'PASSWORD': 'qaz554038897',
         'HOST': 'localhost',
@@ -149,6 +154,8 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
