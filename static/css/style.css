@@ -144,6 +144,10 @@
     background-color: #e17604;
     color: #fff
 }
+.top .nav .erjibox li.active a {
+    background-color: #e17604;
+    color: #fff
+}
 
 .banner1 {
     width: 100%;
@@ -433,7 +437,7 @@
     background-color: #fb4365;
     padding: 70px 0;
     padding-left: 30px;
-    font-size: 24px;
+    font-size: 23px;
     width: 100%;
 }
 
@@ -1263,6 +1267,7 @@ span.f16 {
     background-position: center;
     background-repeat: no-repeat;
     min-width: 1178px;
+    cursor: pointer;
 }
 
 .img4-1 {
@@ -1442,6 +1447,16 @@ span.f16 {
     margin-top: 50px;
 }
 
+.news-banner .tu{display: block;width: 100%;height: auto;}
+.news-banner .swiper-slide:after{
+       content: '';
+    width: 1px;
+    height: 61%;
+    background-color: #cacaca;
+    position: absolute;
+    right: -32px;
+    bottom: 107px;
+}
 .news-banner .month {
     color: #c3c3c3;
     font-size: 33px;
@@ -1464,7 +1479,17 @@ span.f16 {
     font-size: 14px;
     padding-top: 10px;
     padding-bottom: 10px;
+    word-break: break-all;
+ text-overflow: ellipsis;
+ display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+ -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+ -webkit-line-clamp: 2; /** 显示的行数 **/
+ overflow: hidden; /** 隐藏超出的内容 **/
+    height: 32px;
 }
+.news-banner .tu{display: block;width: 348px;
+    height:217px;}
+
 
 .news-banner .duanfen {
     width: 40px;
@@ -1565,7 +1590,7 @@ span.f16 {
 #focus_Box ul {
     position: relative;
     width: 710px;
-    height: 399px;
+    height: 310px;
     transform: scale(1.5)
 }
 
@@ -1705,3 +1730,7 @@ span.f16 {
 .k-page li:last-child a{background-color: #999;color: #fff}
 .k-page li:hover a{color:#fb4365}
 .k-page li.active a{color:#fb4365}
+
+.cha_more{text-align: center}
+.cha_more a{display: inline-block;padding: 4px 15px;
+    color: #999;border: 1px solid #999}
