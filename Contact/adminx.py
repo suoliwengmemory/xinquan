@@ -2,10 +2,10 @@ import xadmin
 from .models import Contact, Theme
 
 class ThemeAdmin(object):
-    list_display = ["image", "add_time"]
-    search_fields = ["image"]
-    list_filter = ["image", "add_time"]
-
+    list_display = ["title", "title2", "image", "add_time"]
+    search_fields = ["title", "title2", "image"]
+    list_filter = ["title",  "title2", "image", "add_time"]
+    style_fields = {"detail": "ueditor"}
 xadmin.site.register(Theme, ThemeAdmin)
 
 
